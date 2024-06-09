@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_advance/UI/login_page.dart';
 import 'package:flutter_application_advance/provider/login_provider.dart';
+import 'package:flutter_application_advance/provider/main_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -17,6 +18,9 @@ class MyApps extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (context) => LoginProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => MainProvider(),
         ),
       ],
       child: MaterialApp(

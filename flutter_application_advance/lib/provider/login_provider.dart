@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_advance/UI/main_page.dart';
 
 class LoginProvider extends ChangeNotifier {
   final formKey = GlobalKey<FormState>();
@@ -12,9 +13,13 @@ class LoginProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void processLogin() {
+  void processLogin(BuildContext context) {
     if (formKey.currentState!.validate()) {
-      messageError = 'Success';
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => MainPage(),
+          ));
     }
     notifyListeners();
   }

@@ -114,7 +114,7 @@ class LoginPage extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(10))),
                         onPressed: () {
                           // loginProcess();
-                          context.read<LoginProvider>().processLogin();
+                          context.read<LoginProvider>().processLogin(context);
                         },
                         child: const Text(
                           'Login',
