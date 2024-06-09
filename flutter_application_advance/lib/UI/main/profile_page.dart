@@ -19,7 +19,7 @@ class ProfilePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Nama : $username'),
+              Text('Namas : $username'),
               const Text('Domisili : Jakarta'),
               const SizedBox(
                 height: 20,

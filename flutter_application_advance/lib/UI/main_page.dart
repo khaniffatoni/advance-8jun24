@@ -20,9 +20,9 @@ class MainPage extends StatelessWidget {
     var provider = context.watch<MainProvider>();
     return Scaffold(
         drawer: navigationDrawer(context),
-        appBar: PreferredSize(
-            preferredSize: Size(MediaQuery.sizeOf(context).width, 50),
-            child: AppBarCustom(mainPage, Colors.blue)),
+        appBar: AppBar(title: Text('Main Page'), actions: [IconButton(onPressed: () {
+          context.read<MainProvider>().logout(context);
+        }, icon: Icon(Icons.exit_to_app))],),
         bottomNavigationBar: BottomNavigationBar(
             currentIndex: provider.indexTab > 4 ? 1 : provider.indexTab,
             onTap: (value) => context.read<MainProvider>().changeBody(value),

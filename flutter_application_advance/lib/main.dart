@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_advance/UI/login_page.dart';
+import 'package:flutter_application_advance/UI/splash_screen.dart';
 import 'package:flutter_application_advance/provider/login_provider.dart';
 import 'package:flutter_application_advance/provider/main_provider.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
   runApp(const MyApps());
 }
 
 class MyApps extends StatelessWidget {
-  const MyApps({super.key});
+  const MyApps( {super.key});
 
   // This widget is the root of your application.
   @override
@@ -45,7 +45,8 @@ class MyApps extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
             useMaterial3: true,
           ),
-          home: const LoginPage()),
+          home: SplashScreen()),
     );
   }
 }
+

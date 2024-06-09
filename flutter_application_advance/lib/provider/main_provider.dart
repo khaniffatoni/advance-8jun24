@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_advance/UI/login_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MainProvider extends ChangeNotifier {
   String title = 'Halaman Pertama';
@@ -28,5 +30,16 @@ class MainProvider extends ChangeNotifier {
       hobbySelected.add(value);
     }
     notifyListeners();
+  }
+
+  void logout(BuildContext context) async {
+    SharedPreferences _sharedPreferences =
+        await SharedPreferences.getInstance();
+    await _sharedPreferences.clear();
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => LoginPage(),
+        ));
   }
 }
