@@ -1,24 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_application_advance/provider/login_provider.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:provider/provider.dart';
 
-class LoginPage extends StatefulWidget {
+class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
-  final _formKey = GlobalKey<FormState>();
-  TextEditingController emailField = TextEditingController();
-  TextEditingController passwordField = TextEditingController();
-  bool statusObsecure = true;
-  String? email;
-  String password = '';
-
-  @override
   Widget build(BuildContext context) {
+    var provider = context.watch<LoginProvider>();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
@@ -50,13 +41,13 @@ class _LoginPageState extends State<LoginPage> {
                   borderRadius: BorderRadius.all(Radius.circular(20)),
                   side: BorderSide(color: Colors.red)),
               child: Form(
-                key: _formKey,
+                key: provider.formKey,
                 child: Column(
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(40),
                       child: TextFormField(
-                        controller: emailField,
+                        controller: provider.emailField,
                         keyboardType: TextInputType.emailAddress,
                         validator: (value) {
                           if (value == '') {
@@ -85,9 +76,9 @@ class _LoginPageState extends State<LoginPage> {
                     Padding(
                       padding: const EdgeInsets.all(40),
                       child: TextFormField(
-                        controller: passwordField,
+                        controller: provider.passwordField,
                         keyboardType: TextInputType.visiblePassword,
-                        obscureText: statusObsecure,
+                        obscureText: provider.statusObsecure,
                         validator: (value) {
                           if (value == '') {
                             return 'Isi field ini';
@@ -100,11 +91,11 @@ class _LoginPageState extends State<LoginPage> {
                             prefixIcon: const Icon(Icons.lock),
                             suffixIcon: IconButton(
                                 onPressed: () {
-                                  setState(() {
-                                    statusObsecure = !statusObsecure;
-                                  });
+                                  context
+                                      .read<LoginProvider>()
+                                      .setObsecurePass();
                                 },
-                                icon: Icon(statusObsecure
+                                icon: Icon(provider.statusObsecure
                                     ? Icons.visibility_off
                                     : Icons.visibility)),
                             focusedBorder: const OutlineInputBorder(
@@ -122,7 +113,8 @@ class _LoginPageState extends State<LoginPage> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10))),
                         onPressed: () {
-                          loginProcess();
+                          // loginProcess();
+                          context.read<LoginProvider>().processLogin();
                         },
                         child: const Text(
                           'Login',
@@ -133,51 +125,9 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
           ),
-          Text('Email Anda : ${email ?? '-'}')
+          Text('Message : ${provider.messageError}')
         ],
       ),
     );
-  }
-
-  void loginProcess() {
-    if (_formKey.currentState!.validate()) {
-      Fluttertoast.showToast(
-          msg: 'Success',
-          toastLength: Toast.LENGTH_SHORT,
-          backgroundColor: Colors.green);
-    }
-    
-    // if (emailField.text.isEmpty || passwordField.text.isEmpty) {
-    // example : toast
-    // Fluttertoast.showToast(
-    //     msg: 'Lengkapi semua field isian!!',
-    //     toastLength: Toast.LENGTH_SHORT,
-    //     backgroundColor: Colors.red);
-    // example : snackbar
-    // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-    //   content: Text('Lengkapi semua field isian!!!'),
-    //   backgroundColor: Colors.red,
-    //   shape: RoundedRectangleBorder(
-    //       borderRadius: BorderRadius.only(
-    //           topLeft: Radius.circular(20), topRight: Radius.circular(20))),
-    //   action: SnackBarAction(
-    //       label: 'Dismiss',
-    //       onPressed: () => ScaffoldMessenger.of(context).clearSnackBars()),
-    // ));
-    // example : alert dialog
-    // showDialog(
-    //   context: context,
-    //   builder: (context) {
-    //     return AlertDialog(
-    //       content: Text('Lengkapi semua field isian!!!'),
-    //       actions: [
-    //         TextButton(
-    //             onPressed: () => Navigator.pop(context),
-    //             child: Text('Dismiss'))
-    //       ],
-    //     );
-    //   },
-    // );
-    // } else {}
   }
 }
