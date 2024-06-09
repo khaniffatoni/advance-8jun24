@@ -69,7 +69,7 @@ class MainPage extends StatelessWidget {
               context.read<MainProvider>().changeBody(10);
               Navigator.pop(context);
             },
-          )
+          ),
         ],
       ),
     );

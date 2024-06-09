@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_advance/models/order_model.dart';
 import 'package:flutter_application_advance/models/tab_item.dart';
 
 import 'color_pallete.dart';
@@ -40,6 +41,16 @@ List<TabItem> listBottomItem = [
   //     label: 'History Payment'),
   // BottomNavigationBarItem(
   //     backgroundColor: primaryColor, icon: Icon(Icons.star), label: 'Favorites')
+];
+
+List<OrderModel> listOrder = [
+  for (var index = 0; index < 50; index++)
+    OrderModel(
+        'TRX00$index',
+        'Product $index',
+        DateTime.now().toString(),
+        index.isOdd ? 'Waiting' : 'Payment',
+        index.isEven ? index * 0.1 : index * 2)
 ];
 
 const String mainPage = 'Main Page xxxx';
