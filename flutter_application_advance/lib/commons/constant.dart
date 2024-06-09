@@ -53,4 +53,7 @@ List<OrderModel> listOrder = [
         index.isEven ? index * 0.1 : index * 2)
 ];
 
+List<String> listReligions = ['Islam', 'Katholik', 'Protestan', 'Hindu', 'Budha', 'Konghuchu'];
+List<String> listHobbies = ['Basketball','Soccer','Swim','Racing'];
+
 const String mainPage = 'Main Page xxxx';
