@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_application_advance/UI/main/favorite_page.dart';
+import 'package:flutter_application_advance/UI/main/history_payment_page.dart';
+import 'package:flutter_application_advance/UI/main/payment_page.dart';
+import 'package:flutter_application_advance/UI/main/profile_page.dart';
 import 'package:flutter_application_advance/UI/two_page.dart';
 import 'package:flutter_application_advance/commons/color_pallete.dart';
 import 'package:flutter_application_advance/commons/constant.dart';
@@ -36,29 +40,13 @@ class MainPage extends StatelessWidget {
   Widget bodyMain(int index) {
     switch (index) {
       case 0:
-        return Center(
-          child: Row(
-            children: [Text('My Profile')],
-          ),
-        );
+        return ProfilePage();
       case 1:
-        return Center(
-          child: Row(
-            children: [Text('Payment Method')],
-          ),
-        );
+        return PaymentPage();
       case 2:
-        return Center(
-          child: Row(
-            children: [Text('History Payment')],
-          ),
-        );
+        return HistoryPaymentPage();
       case 3:
-        return Center(
-          child: Row(
-            children: [Text('Favorites')],
-          ),
-        );
+        return FavoritePage();
 
       default:
         return Center(
