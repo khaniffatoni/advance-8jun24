@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 import '../../commons/constant.dart';
 import '../../provider/main_provider.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+  final String username;
+  const ProfilePage(this.username, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,33 +19,33 @@ class ProfilePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Nama : Gustav'),
-              Text('Domisili : Jakarta'),
-              SizedBox(
+              Text('Nama : $username'),
+              const Text('Domisili : Jakarta'),
+              const SizedBox(
                 height: 20,
               ),
-              Text('Gender :'),
+              const Text('Gender :'),
               RadioListTile(
                 value: 'Male',
                 groupValue: provider.genderSelected,
-                title: Text('Male'),
+                title: const Text('Male'),
                 onChanged: (value) =>
                     context.read<MainProvider>().selectGender(value ?? '-'),
               ),
               RadioListTile(
                 value: 'Female',
                 groupValue: provider.genderSelected,
-                title: Text('Female'),
+                title: const Text('Female'),
                 onChanged: (value) =>
                     context.read<MainProvider>().selectGender(value ?? '-'),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Agama'),
+                  const Text('Agama'),
                   DropdownButton(
                     value: provider.religionSelected,
                     items: listReligions
@@ -58,7 +58,7 @@ class ProfilePage extends StatelessWidget {
                   ),
                 ],
               ),
-              Container(
+              SizedBox(
                 height: MediaQuery.sizeOf(context).height / 2,
                 child: ListView(
                     children: listHobbies

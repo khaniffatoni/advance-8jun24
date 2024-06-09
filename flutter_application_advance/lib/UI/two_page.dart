@@ -11,7 +11,7 @@ class TwoPage extends StatelessWidget {
       appBar: PreferredSize(
           preferredSize: Size(MediaQuery.sizeOf(context).width, 50),
           child: AppBarCustom('Main Page', Colors.blue)),
-      body: Center(
+      body: const Center(
         child: Text('Halaman Kedua'),
       ),
     );

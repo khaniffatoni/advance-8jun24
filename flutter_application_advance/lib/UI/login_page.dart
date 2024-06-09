@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_application_advance/provider/login_provider.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 class LoginPage extends StatelessWidget {
@@ -45,7 +43,7 @@ class LoginPage extends StatelessWidget {
                 child: Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.all(40),
+                      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
                       child: TextFormField(
                         controller: provider.emailField,
                         keyboardType: TextInputType.emailAddress,
@@ -74,7 +72,34 @@ class LoginPage extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(40),
+                      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
+                      child: TextFormField(
+                        controller: provider.usernameField,
+                        keyboardType: TextInputType.name,
+                        validator: (value) {
+                          if (value == '') {
+                            return 'Isi field ini';
+                          } 
+                          return null;
+                        },
+                        // onChanged: (value) {
+                        //   setState(() {
+                        //     email = value;
+                        //   });
+                        // },
+                        decoration: const InputDecoration(
+                            hintText: 'Masukkan Username',
+                            labelText: 'Username',
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.blue)),
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide(
+                              color: Colors.blue,
+                            ))),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
                       child: TextFormField(
                         controller: provider.passwordField,
                         keyboardType: TextInputType.visiblePassword,

@@ -2,26 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_advance/models/order_model.dart';
 import 'package:flutter_application_advance/models/tab_item.dart';
 
-import 'color_pallete.dart';
 
 List<TabItem> listBottomItem = [
   TabItem(
-      Icon(
+      const Icon(
         Icons.portrait,
       ),
       'My Profile'),
   TabItem(
-      Icon(
+      const Icon(
         Icons.monetization_on,
       ),
       'Payment'),
   TabItem(
-      Icon(
+      const Icon(
         Icons.pie_chart,
       ),
       'History Payment'),
   TabItem(
-      Icon(
+      const Icon(
         Icons.star,
       ),
       'Favorite'),

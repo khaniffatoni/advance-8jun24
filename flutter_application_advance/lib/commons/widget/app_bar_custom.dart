@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 
 class AppBarCustom extends StatelessWidget {
@@ -10,7 +12,7 @@ class AppBarCustom extends StatelessWidget {
     return AppBar(
       title: Text(
         title,
-        style: TextStyle(color: Colors.red),
+        style: const TextStyle(color: Colors.red),
       ),
       backgroundColor: colorAppBar,
     );

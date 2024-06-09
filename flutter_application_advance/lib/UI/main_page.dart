@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_application_advance/UI/main/favorite_page.dart';
 import 'package:flutter_application_advance/UI/main/history_payment_page.dart';
 import 'package:flutter_application_advance/UI/main/payment_page.dart';
 import 'package:flutter_application_advance/UI/main/profile_page.dart';
-import 'package:flutter_application_advance/UI/two_page.dart';
 import 'package:flutter_application_advance/commons/color_pallete.dart';
 import 'package:flutter_application_advance/commons/constant.dart';
 import 'package:flutter_application_advance/provider/main_provider.dart';
@@ -13,7 +11,9 @@ import 'package:provider/provider.dart';
 import '../commons/widget/app_bar_custom.dart';
 
 class MainPage extends StatelessWidget {
-  const MainPage({super.key});
+  final String email;
+  final String username;
+  const MainPage(this.email, this.username, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,16 +40,16 @@ class MainPage extends StatelessWidget {
   Widget bodyMain(int index) {
     switch (index) {
       case 0:
-        return ProfilePage();
+        return ProfilePage(username);
       case 1:
-        return PaymentPage();
+        return const PaymentPage();
       case 2:
-        return HistoryPaymentPage();
+        return const HistoryPaymentPage();
       case 3:
-        return FavoritePage();
+        return const FavoritePage();
 
       default:
-        return Center(
+        return const Center(
           child: Row(
             children: [Text('Navigation Drawer')],
           ),
@@ -63,8 +63,8 @@ class MainPage extends StatelessWidget {
         children: [
           headerDrawer(),
           ListTile(
-            leading: Icon(Icons.portrait),
-            title: Text('My Profile'),
+            leading: const Icon(Icons.portrait),
+            title: const Text('My Profile'),
             onTap: () {
               context.read<MainProvider>().changeBody(10);
               Navigator.pop(context);
@@ -81,7 +81,7 @@ class MainPage extends StatelessWidget {
         otherAccountsPictures: [
           Stack(
             children: [
-              Icon(
+              const Icon(
                 Icons.star,
                 color: Colors.white,
               ),
@@ -89,17 +89,17 @@ class MainPage extends StatelessWidget {
                 right: 5,
                 top: -5,
                 child: Container(
-                    padding: EdgeInsets.all(5),
-                    decoration: BoxDecoration(
+                    padding: const EdgeInsets.all(5),
+                    decoration: const BoxDecoration(
                         color: Colors.cyan, shape: BoxShape.circle),
-                    child: Text(
+                    child: const Text(
                       '2',
                       style: TextStyle(fontSize: 10, color: Colors.white),
                     )),
               )
             ],
           ),
-          Icon(
+          const Icon(
             Icons.bookmark,
             color: Colors.white,
           ),
@@ -108,7 +108,7 @@ class MainPage extends StatelessWidget {
           child: Image.network(
               'https://marketplace.canva.com/EAFHfL_zPBk/1/0/1600w/canva-yellow-inspiration-modern-instagram-profile-picture-kpZhUIzCx_w.jpg'),
         ),
-        accountName: Text('gustav'),
-        accountEmail: Text('gustav@gmail.com'));
+        accountName: Text(username),
+        accountEmail: Text(email));
   }
 }

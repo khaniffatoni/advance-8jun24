@@ -11,7 +11,7 @@ class HistoryPaymentPage extends StatelessWidget {
       itemCount: listOrder.length,
       itemBuilder: (context, index) {
         return Card(
-          margin: EdgeInsets.all(10),
+          margin: const EdgeInsets.all(10),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
@@ -19,7 +19,7 @@ class HistoryPaymentPage extends StatelessWidget {
               children: [
                 Text(
                   listOrder[index].idTransaction,
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
                 Text(listOrder[index].product),
                 Text(listOrder[index].qty.toString()),
