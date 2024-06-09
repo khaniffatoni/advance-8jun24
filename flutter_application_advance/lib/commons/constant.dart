@@ -41,3 +41,5 @@ List<TabItem> listBottomItem = [
   // BottomNavigationBarItem(
   //     backgroundColor: primaryColor, icon: Icon(Icons.star), label: 'Favorites')
 ];
+
+const String mainPage = 'Main Page xxxx';

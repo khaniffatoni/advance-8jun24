@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_application_advance/UI/two_page.dart';
 import 'package:flutter_application_advance/commons/color_pallete.dart';
 import 'package:flutter_application_advance/commons/constant.dart';
@@ -14,11 +15,12 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var provider = context.watch<MainProvider>();
     return Scaffold(
+        drawer: navigationDrawer(context),
         appBar: PreferredSize(
             preferredSize: Size(MediaQuery.sizeOf(context).width, 50),
-            child: AppBarCustom('Main Page', Colors.blue)),
+            child: AppBarCustom(mainPage, Colors.blue)),
         bottomNavigationBar: BottomNavigationBar(
-            currentIndex: provider.indexTab,
+            currentIndex: provider.indexTab > 4 ? 1 : provider.indexTab,
             onTap: (value) => context.read<MainProvider>().changeBody(value),
             // unselectedItemColor: primaryColor,
             // unselectedLabelStyle: TextStyle(color: primaryColor),
@@ -59,7 +61,66 @@ class MainPage extends StatelessWidget {
         );
 
       default:
-        return SizedBox();
+        return Center(
+          child: Row(
+            children: [Text('Navigation Drawer')],
+          ),
+        );
     }
+  }
+
+  Widget navigationDrawer(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        children: [
+          headerDrawer(),
+          ListTile(
+            leading: Icon(Icons.portrait),
+            title: Text('My Profile'),
+            onTap: () {
+              context.read<MainProvider>().changeBody(10);
+              Navigator.pop(context);
+            },
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget headerDrawer() {
+    return UserAccountsDrawerHeader(
+        decoration: BoxDecoration(color: primaryColor),
+        otherAccountsPictures: [
+          Stack(
+            children: [
+              Icon(
+                Icons.star,
+                color: Colors.white,
+              ),
+              Positioned(
+                right: 5,
+                top: -5,
+                child: Container(
+                    padding: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                        color: Colors.cyan, shape: BoxShape.circle),
+                    child: Text(
+                      '2',
+                      style: TextStyle(fontSize: 10, color: Colors.white),
+                    )),
+              )
+            ],
+          ),
+          Icon(
+            Icons.bookmark,
+            color: Colors.white,
+          ),
+        ],
+        currentAccountPicture: ClipOval(
+          child: Image.network(
+              'https://marketplace.canva.com/EAFHfL_zPBk/1/0/1600w/canva-yellow-inspiration-modern-instagram-profile-picture-kpZhUIzCx_w.jpg'),
+        ),
+        accountName: Text('gustav'),
+        accountEmail: Text('gustav@gmail.com'));
   }
 }
