@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_advance/UI/splash_screen.dart';
 import 'package:flutter_application_advance/provider/login_provider.dart';
 import 'package:flutter_application_advance/provider/main_provider.dart';
+import 'package:flutter_application_advance/provider/product_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -9,7 +10,7 @@ void main() async {
 }
 
 class MyApps extends StatelessWidget {
-  const MyApps( {super.key});
+  const MyApps({super.key});
 
   // This widget is the root of your application.
   @override
@@ -21,6 +22,9 @@ class MyApps extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => MainProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ProductProvider(),
         ),
       ],
       child: MaterialApp(
@@ -49,4 +53,3 @@ class MyApps extends StatelessWidget {
     );
   }
 }
-

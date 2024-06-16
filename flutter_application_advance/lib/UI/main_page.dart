@@ -3,6 +3,7 @@ import 'package:flutter_application_advance/UI/main/favorite_page.dart';
 import 'package:flutter_application_advance/UI/main/history_payment_page.dart';
 import 'package:flutter_application_advance/UI/main/payment_page.dart';
 import 'package:flutter_application_advance/UI/main/profile_page.dart';
+import 'package:flutter_application_advance/UI/product/form_product_page.dart';
 import 'package:flutter_application_advance/commons/color_pallete.dart';
 import 'package:flutter_application_advance/commons/constant.dart';
 import 'package:flutter_application_advance/provider/main_provider.dart';
@@ -43,7 +44,11 @@ class MainPage extends StatelessWidget {
                 .toList()),
         floatingActionButton: provider.indexTab == 3
             ? FloatingActionButton(
-                onPressed: () => null,
+                onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => FormProductPage(),
+                    )),
                 child: Icon(Icons.add),
               )
             : SizedBox(),

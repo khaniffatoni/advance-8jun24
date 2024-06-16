@@ -18,7 +18,7 @@ class MainProvider extends ChangeNotifier {
   String messageError = '';
   StateProduct stateDataProduct = StateProduct.initial;
   List<DataProduct> listProduct = <DataProduct>[];
-Data detailProduct = Data();
+  Data detailProduct = Data();
 
   void changeBody(int index) {
     indexTab = index;
@@ -63,7 +63,7 @@ Data detailProduct = Data();
     try {
       Response response = await Dio().get('http://10.0.2.2:8080/product');
       var result = ProductResponse.fromJson(response.data);
-      
+
       if (result.data!.isEmpty) {
         stateDataProduct = StateProduct.noData;
         messageError = result.message ?? '';
@@ -78,7 +78,7 @@ Data detailProduct = Data();
     notifyListeners();
   }
 
-  void moveToDetail(BuildContext context, int id){
+  void moveToDetail(BuildContext context, int id) {
     getDetailProduct(id);
     Navigator.push(
         context,
