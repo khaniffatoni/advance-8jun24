@@ -20,9 +20,16 @@ class MainPage extends StatelessWidget {
     var provider = context.watch<MainProvider>();
     return Scaffold(
         drawer: navigationDrawer(context),
-        appBar: AppBar(title: Text('Main Page'), actions: [IconButton(onPressed: () {
-          context.read<MainProvider>().logout(context);
-        }, icon: Icon(Icons.exit_to_app))],),
+        appBar: AppBar(
+          title: Text('Main Page'),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  context.read<MainProvider>().logout(context);
+                },
+                icon: Icon(Icons.exit_to_app))
+          ],
+        ),
         bottomNavigationBar: BottomNavigationBar(
             currentIndex: provider.indexTab > 4 ? 1 : provider.indexTab,
             onTap: (value) => context.read<MainProvider>().changeBody(value),
@@ -34,6 +41,12 @@ class MainPage extends StatelessWidget {
                     label: e.label,
                     backgroundColor: primaryColor))
                 .toList()),
+        floatingActionButton: provider.indexTab == 3
+            ? FloatingActionButton(
+                onPressed: () => null,
+                child: Icon(Icons.add),
+              )
+            : SizedBox(),
         body: bodyMain(provider.indexTab));
   }
 

@@ -1,5 +1,8 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_advance/UI/login_page.dart';
+import 'package:flutter_application_advance/commons/constant.dart';
+import 'package:flutter_application_advance/models/product_response.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MainProvider extends ChangeNotifier {
@@ -8,8 +11,16 @@ class MainProvider extends ChangeNotifier {
   String genderSelected = 'Male';
   String religionSelected = 'Budha';
   List<String> hobbySelected = [];
+
+  String messageError = '';
+  StateProduct stateDataProduct = StateProduct.initial;
+  List<DataProduct> listProduct = <DataProduct>[];
+
   void changeBody(int index) {
     indexTab = index;
+    if (indexTab == 3) {
+      getListProduct();
+    }
     notifyListeners();
   }
 
@@ -41,5 +52,25 @@ class MainProvider extends ChangeNotifier {
         MaterialPageRoute(
           builder: (context) => LoginPage(),
         ));
+  }
+
+  void getListProduct() async {
+    stateDataProduct = StateProduct.loading;
+    try {
+      Response response = await Dio().get('http://10.0.2.2:8080/product');
+      var result = ProductResponse.fromJson(response.data);
+      
+      if (result.data!.isEmpty) {
+        stateDataProduct = StateProduct.noData;
+        messageError = result.message ?? '';
+      } else {
+        stateDataProduct = StateProduct.success;
+        listProduct = result.data!;
+      }
+    } catch (e) {
+      stateDataProduct = StateProduct.error;
+      messageError = e.toString();
+    }
+    notifyListeners();
   }
 }
