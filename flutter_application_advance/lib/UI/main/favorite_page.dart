@@ -96,7 +96,10 @@ class FavoritePage extends StatelessWidget {
                               ],
                             )),
                         IconButton(
-                            onPressed: () => null,
+                            onPressed: () => context
+                                .read<MainProvider>()
+                                .deleteProduct(context,
+                                    provider.listProduct[index].id ?? 0),
                             icon: Column(
                               children: [
                                 Icon(Icons.delete, color: Colors.red),

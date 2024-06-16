@@ -97,4 +97,23 @@ class MainProvider extends ChangeNotifier {
     }
     notifyListeners();
   }
+
+  void deleteProduct(BuildContext context, int id) async {
+    try {
+      Response response =
+          await Dio().delete('http://10.0.2.2:8080/product/$id');
+      var result = DetailProductResponse.fromJson(response.data);
+
+      if (result.error == true) {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text('Error : ${result.message}')));
+      } else {
+        getListProduct();
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('Error : ${e.toString()}')));
+    }
+    notifyListeners();
+  }
 }
