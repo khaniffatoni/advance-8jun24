@@ -10,6 +10,7 @@ import 'package:flutter_application_advance/provider/main_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../commons/widget/app_bar_custom.dart';
+import '../provider/product_provider.dart';
 
 class MainPage extends StatelessWidget {
   final String email;
@@ -44,11 +45,15 @@ class MainPage extends StatelessWidget {
                 .toList()),
         floatingActionButton: provider.indexTab == 3
             ? FloatingActionButton(
-                onPressed: () => Navigator.push(
+                onPressed: () {
+                  
+                              context.read<ProductProvider>().initialData(0);
+Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => FormProductPage(),
-                    )),
+                      builder: (context) => FormProductPage(0),
+                    ));
+                },
                 child: Icon(Icons.add),
               )
             : SizedBox(),

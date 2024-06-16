@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_advance/commons/constant.dart';
+import 'package:flutter_application_advance/provider/product_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../../provider/main_provider.dart';
+import '../product/form_product_page.dart';
 
 class FavoritePage extends StatelessWidget {
   const FavoritePage({super.key});
@@ -74,7 +76,16 @@ class FavoritePage extends StatelessWidget {
                               ],
                             )),
                         IconButton(
-                            onPressed: () => null,
+                            onPressed: () {
+                              context.read<ProductProvider>().initialData(
+                                  provider.listProduct[index].id ?? 0);
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => FormProductPage(
+                                        provider.listProduct[index].id ?? 0),
+                                  ));
+                            },
                             icon: Column(
                               children: [
                                 Icon(

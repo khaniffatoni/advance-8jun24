@@ -3,19 +3,24 @@ import 'package:flutter_application_advance/provider/product_provider.dart';
 import 'package:provider/provider.dart';
 
 class FormProductPage extends StatelessWidget {
-  const FormProductPage({super.key});
+  final int idProduct;
+  const FormProductPage(this.idProduct, {super.key});
 
   @override
   Widget build(BuildContext context) {
     var provider = context.watch<ProductProvider>();
     return Scaffold(
       appBar: AppBar(
-        title: Text('Form Insert Product'),
+        title:
+            Text(idProduct == 0 ? 'Form Insert Product' : 'Form Edit Product'),
         actions: [
           TextButton(
-              onPressed: () =>
-                  context.read<ProductProvider>().insertNewProduct(context),
-              child: Text('Submit'))
+              onPressed: () => idProduct == 0
+                  ? context.read<ProductProvider>().insertNewProduct(context)
+                  : context
+                      .read<ProductProvider>()
+                      .updateProduct(context, idProduct),
+              child: Text(idProduct == 0 ? 'Submit' : 'Update'))
         ],
       ),
       body: Form(
