@@ -59,6 +59,41 @@ class FavoritePage extends StatelessWidget {
                       provider.listProduct[index].descProduct ?? '',
                       style: const TextStyle(fontSize: 20),
                     ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton(
+                            onPressed: () => context
+                                .read<MainProvider>()
+                                .moveToDetail(context,
+                                    provider.listProduct[index].id ?? 0),
+                            icon: Column(
+                              children: [
+                                Icon(Icons.info, color: Colors.blue),
+                                Text('View')
+                              ],
+                            )),
+                        IconButton(
+                            onPressed: () => null,
+                            icon: Column(
+                              children: [
+                                Icon(
+                                  Icons.edit,
+                                  color: Colors.green,
+                                ),
+                                Text('Edit')
+                              ],
+                            )),
+                        IconButton(
+                            onPressed: () => null,
+                            icon: Column(
+                              children: [
+                                Icon(Icons.delete, color: Colors.red),
+                                Text('Delete')
+                              ],
+                            ))
+                      ],
+                    )
                   ],
                 ),
               ),
