@@ -2,7 +2,7 @@
 // ignore_for_file: type=lint
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
-    show defaultTargetPlatform, kIsWeb, TargetPlatform;
+    show defaultTargetPlatform, TargetPlatform;
 
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
@@ -16,32 +16,9 @@ import 'package:flutter/foundation.dart'
 /// ```
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
-    if (kIsWeb) {
-      return web;
-    }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
         return android;
-      case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
-      case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
-      case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
-      case TargetPlatform.linux:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for linux - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
       default:
         throw UnsupportedError(
           'DefaultFirebaseOptions are not supported for this platform.',
@@ -49,21 +26,12 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAzkUIr4ayzyCZtSNbIgu4kl3hyd-l7ou0',
-    appId: '1:574792181158:web:0aed1ddc9fb7be40041b67',
-    messagingSenderId: '574792181158',
-    projectId: 'coba-firebase-d5b17',
-    authDomain: 'coba-firebase-d5b17.firebaseapp.com',
-    storageBucket: 'coba-firebase-d5b17.appspot.com',
-    measurementId: 'G-TM9ZY23J5V',
+  static const FirebaseOptions android = FirebaseOptions(
+    apiKey: 'AIzaSyCcT26DCj5YLSU5Fjh7USR1GYxzqY761NI',
+    appId: '1:433921209683:android:3f274a30f1eef9362e1da6',
+    messagingSenderId: '433921209683',
+    projectId: 'course-net-a9cd0',
+    storageBucket: 'course-net-a9cd0.appspot.com',
   );
 
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCYTxl0b8EFp5jP_1rkohI5uvk-Jk4quoE',
-    appId: '1:574792181158:android:370d728229d1f76c041b67',
-    messagingSenderId: '574792181158',
-    projectId: 'coba-firebase-d5b17',
-    storageBucket: 'coba-firebase-d5b17.appspot.com',
-  );
 }
