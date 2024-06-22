@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_advance/UI/main_page.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -57,6 +58,40 @@ class LoginProvider extends ChangeNotifier {
       messageError = e.toString();
     }
 
+    notifyListeners();
+  }
+
+  void loginWithEmail(BuildContext context) async {
+    try {
+      UserCredential result = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(
+              email: emailField.text, password: passwordField.text);
+      User dataUser = result.user!;
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => MainPage(dataUser.email ?? '-', dataUser.uid),
+          ));
+    } on FirebaseAuthException catch (error) {
+      messageError = error.message!;
+    } catch (e) {
+      messageError = e.toString();
+    }
+    notifyListeners();
+  }
+
+  void registerWithEmail(BuildContext context) async {
+    try {
+      UserCredential result = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+              email: emailField.text, password: passwordField.text);
+      User dataUser = result.user!;
+      Fluttertoast.showToast(msg: 'Success Register with UID : ${dataUser.uid}');
+    } on FirebaseAuthException catch (error) {
+      messageError = error.message!;
+    } catch (e) {
+      messageError = e.toString();
+    }
     notifyListeners();
   }
 }
