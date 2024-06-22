@@ -33,5 +33,4 @@ class DefaultFirebaseOptions {
     projectId: 'course-net-a9cd0',
     storageBucket: 'course-net-a9cd0.appspot.com',
   );
-
 }
