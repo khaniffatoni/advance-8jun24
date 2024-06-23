@@ -3,6 +3,7 @@ import 'package:flutter_application_advance/UI/main/favorite_page.dart';
 import 'package:flutter_application_advance/UI/main/history_payment_page.dart';
 import 'package:flutter_application_advance/UI/main/payment_page.dart';
 import 'package:flutter_application_advance/UI/main/profile_page.dart';
+import 'package:flutter_application_advance/UI/outlet/form_outlet_page.dart';
 import 'package:flutter_application_advance/UI/product/form_product_page.dart';
 import 'package:flutter_application_advance/commons/color_pallete.dart';
 import 'package:flutter_application_advance/commons/constant.dart';
@@ -43,15 +44,25 @@ class MainPage extends StatelessWidget {
                     label: e.label,
                     backgroundColor: primaryColor))
                 .toList()),
-        floatingActionButton: provider.indexTab == 3
+        floatingActionButton: (provider.indexTab == 3 || provider.indexTab == 2)
             ? FloatingActionButton(
                 onPressed: () {
-                  context.read<ProductProvider>().initialData(0);
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => FormProductPage(0),
-                      ));
+                  if (provider.indexTab == 2) {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => FormOutletPage(''),
+                        ));
+                  }
+
+                  if (provider.indexTab == 3) {
+                    context.read<ProductProvider>().initialData(0);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => FormProductPage(0),
+                        ));
+                  }
                 },
                 child: Icon(Icons.add),
               )
