@@ -139,4 +139,11 @@ class MainProvider extends ChangeNotifier {
     }
     notifyListeners();
   }
+
+  void deleteOutlet(String idDoc) {
+    CollectionReference collectionReference =
+        FirebaseFirestore.instance.collection('outlet');
+    collectionReference.doc(idDoc).delete();
+    getListOutlet();
+  }
 }

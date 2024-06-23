@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_advance/provider/main_provider.dart';
 import 'package:provider/provider.dart';
 
+import '../UI/outlet/detail_outlet_page.dart';
 import '../models/data_outlet.dart';
 
 class OutletProvider extends ChangeNotifier {
@@ -47,5 +48,14 @@ class OutletProvider extends ChangeNotifier {
     });
     Navigator.pop(context);
     context.read<MainProvider>().getListOutlet();
+  }
+
+  void moveDetailPage(BuildContext context, String idDoc) {
+    detailOutlet(idDoc);
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => DetailOutletPage(),
+        ));
   }
 }
