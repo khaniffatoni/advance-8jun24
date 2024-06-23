@@ -21,15 +21,23 @@ class _MapPageState extends State<MapPage> {
   }
 
   void getCurrentLocation() async {
-    final GeolocatorPlatform _geolocatorPlatform = GeolocatorPlatform.instance;
-    Position currentPosition = await _geolocatorPlatform.getCurrentPosition();
-    setState(() {
-      positionMe = LatLng(currentPosition.latitude, currentPosition.longitude);
-    });
+    var permissionLocation = await Geolocator.openLocationSettings();
+    if (permissionLocation) {
+      final GeolocatorPlatform _geolocatorPlatform =
+          GeolocatorPlatform.instance;
+      Position currentPosition = await _geolocatorPlatform.getCurrentPosition();
+      setState(() {
+        positionMe =
+            LatLng(currentPosition.latitude, currentPosition.longitude);
+      });
+    } else {
+      await Geolocator.openLocationSettings();
+    }
   }
-  
-  String calculateRadius(LatLng location){
-    var radius = Geolocator.distanceBetween(positionMe!.latitude, positionMe!.longitude, location.latitude, location.longitude);
+
+  String calculateRadius(LatLng location) {
+    var radius = Geolocator.distanceBetween(positionMe!.latitude,
+        positionMe!.longitude, location.latitude, location.longitude);
     return radius.toString();
   }
 
@@ -41,6 +49,7 @@ class _MapPageState extends State<MapPage> {
       ),
       body: GoogleMap(
         initialCameraPosition: CameraPosition(target: positionMe!, zoom: 16),
+        polylines: {},
         markers: {
           Marker(
               markerId: MarkerId('marker-0'),
@@ -54,7 +63,9 @@ class _MapPageState extends State<MapPage> {
                 icon: BitmapDescriptor.defaultMarkerWithHue(
                     BitmapDescriptor.hueAzure),
                 position: listLocation[index],
-                infoWindow: InfoWindow(title: 'Location ${index + 1}', snippet: calculateRadius(listLocation[index]))),
+                infoWindow: InfoWindow(
+                    title: 'Location ${index + 1}',
+                    snippet: calculateRadius(listLocation[index]))),
         },
       ),
     );
