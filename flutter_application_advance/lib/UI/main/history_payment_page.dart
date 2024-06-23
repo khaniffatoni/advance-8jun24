@@ -3,7 +3,7 @@ import 'package:flutter_application_advance/provider/main_provider.dart';
 import 'package:flutter_application_advance/provider/outlet_provider.dart';
 import 'package:provider/provider.dart';
 
-import '../../commons/constant.dart';
+//import '../../commons/constant.dart';
 import '../outlet/form_outlet_page.dart';
 
 class HistoryPaymentPage extends StatelessWidget {
