@@ -12,6 +12,7 @@ import 'package:provider/provider.dart';
 
 import '../commons/widget/app_bar_custom.dart';
 import '../provider/product_provider.dart';
+import 'map_page.dart';
 
 class MainPage extends StatelessWidget {
   final String email;
@@ -101,6 +102,17 @@ class MainPage extends StatelessWidget {
             onTap: () {
               context.read<MainProvider>().changeBody(10);
               Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.map_rounded),
+            title: const Text('Map'),
+            onTap: () {
+                Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => MapPage(),
+        ));
             },
           ),
         ],
