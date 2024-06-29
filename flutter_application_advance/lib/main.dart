@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_advance/UI/splash_screen.dart';
@@ -6,6 +8,7 @@ import 'package:flutter_application_advance/provider/login_provider.dart';
 import 'package:flutter_application_advance/provider/main_provider.dart';
 import 'package:flutter_application_advance/provider/outlet_provider.dart';
 import 'package:flutter_application_advance/provider/product_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 
 import 'firebase_options.dart';
@@ -15,8 +18,21 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  ConfigNotification().initialNotification();
+  askPermissionNotification();
   runApp(const MyApps());
+}
+
+void askPermissionNotification() async {
+  PermissionStatus permissionNotification =
+      await Permission.notification.status;
+  if (permissionNotification.isGranted) {
+    ConfigNotification().initialNotification();
+  } else {
+    permissionNotification = await Permission.notification.request();
+    if (permissionNotification.isGranted) {
+      ConfigNotification().initialNotification();
+    }
+  }
 }
 
 class MyApps extends StatelessWidget {
