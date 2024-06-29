@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class ConfigNotification {
   AwesomeNotifications awesomeNotifications = AwesomeNotifications();
   void initialNotification() async {
-   await awesomeNotifications.initialize(
+    await awesomeNotifications.initialize(
         null,
         [
           NotificationChannel(
