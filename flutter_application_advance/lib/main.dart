@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_advance/UI/splash_screen.dart';
+import 'package:flutter_application_advance/commons/config_notification.dart';
 import 'package:flutter_application_advance/provider/login_provider.dart';
 import 'package:flutter_application_advance/provider/main_provider.dart';
 import 'package:flutter_application_advance/provider/outlet_provider.dart';
@@ -14,6 +15,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  ConfigNotification().initialNotification();
   runApp(const MyApps());
 }
 
