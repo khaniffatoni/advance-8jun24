@@ -1,5 +1,6 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class ConfigNotification {
   AwesomeNotifications awesomeNotifications = AwesomeNotifications();
@@ -8,10 +9,12 @@ class ConfigNotification {
         null,
         [
           NotificationChannel(
-              channelKey: 'notif',
-              channelName: 'Notif',
-              channelDescription: 'Test Notification with Image',
-              defaultColor: Colors.blueAccent)
+            channelKey: 'notif',
+            channelName: 'Notif',
+            channelDescription: 'Test Notification',
+            defaultColor: Colors.blueAccent,
+            importance: NotificationImportance.High,
+          )
         ],
         debug: true);
   }
